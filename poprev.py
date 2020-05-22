@@ -36,7 +36,7 @@ ip = str(input("HOST IP:\n"))
 port = str(input("PORT:\n"))
 #shell = str(input("Please select an option?\n"))
 def full():
-    print("Welcome, lets generate a choosen reverse shell\n")
+    print("Welcome, let's generate a reverse shell of your choice\n")
     global ip
     global port
     
