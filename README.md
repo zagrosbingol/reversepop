@@ -19,3 +19,16 @@ Installation:
 3. cd reversepop
 
 4. python3 poprev.py
+
+
+FEATURES:
+
+- Support for: php, python, bash, netcat
+
+- Obfuscation(Non-alphanumeric)
+
+- Netcat listener generator
+
+- Interface IP's
+
+
