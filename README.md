@@ -18,4 +18,4 @@ Installation:
 
 3. cd reversepop
 
-4. python3 main.py
+4. python3 poprev.py
