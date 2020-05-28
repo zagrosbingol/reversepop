@@ -1,34 +1,31 @@
 # reversepop
-A reverse shell generator with obfuscation included
+A reverse shell and webshell generator for ease of access during penetration tests with stealth in mind.
 
 
-dependencies:
-- python3 python3-pip python3-argcomplete xclip
-- Git
-- ifaddr
-- os
-- linecache
-- re
+
 
 Installation:
 
-1. sudo apt-get install python3 python3-pip python3-argcomplete xclip xsel git; pip3 install ifaddr os linecache re
+1. git clone https://github.com/zagrosbingol/reversepop.git
 
-2. git clone https://github.com/zagrosbingol/reversepop.git
+2. cd reversepop
 
-3. cd reversepop
-
-4. python3 poprev.py
+3. sudo python3 setup.py
 
 
 FEATURES:
 
 - Support for: php, python, bash, netcat
 
-- Obfuscation(Non-alphanumeric)
+- Obfuscation:
+* Bashfuscator --> Obfuscation for bash
+* Non-alphanumeric php shell
+
 
 - Netcat listener generator
 
-- Interface IP's
+- Interfaces with corresponding IP's
+
+- 
 
 
