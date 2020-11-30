@@ -17,9 +17,6 @@ Run setup.py
 sudo python3 setup.py
 """
 import ifaddr # Fetching ip from interface
-import socket
-import netifaces as ifaces
-import re 
 import os 
 import linecache # for reading specific lines
 import pathlib
