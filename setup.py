@@ -22,5 +22,5 @@ if sys.platform == "linux" or sys.platform == "linux2":
 
         elif os.getuid != 0:
             print("please run the setup as sudo user")
-            exit()
+            sys.exit()
 
