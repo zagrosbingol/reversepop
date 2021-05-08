@@ -3,7 +3,7 @@
 #FIXED: make ip address variable to be treated as string
 
 """
-Author: Skiddyfruit
+Author: ZagrosBingöl
 Version: 2.0
 License: MIT-3.0
 Category: backdoors
